@@ -6,9 +6,9 @@ public class SplitwiseApp {
         System.out.println("Ready. More features coming in the next lessons. ");
         String payerName = "Riya";
         double totalAmount = 500.0;
-        int numFrnds = 3;
+        int numFriends = 3;
         System.out.println(payerName);
         System.out.println(totalAmount);
-        System.out.println(numFrnds);
+        System.out.println(numFriends);
     }
 }
