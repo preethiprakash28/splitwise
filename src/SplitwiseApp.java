@@ -22,9 +22,7 @@ public class SplitwiseApp {
                 case 1 -> {
                     if (friends.isEmpty()) {
                         System.out.println("No friends yet. Add friends first (option 2).");
-                    }
-                    else
-                    {
+                    } else {
                         System.out.print("Who paid? ");
                         String payerName = sc.nextLine();
                         System.out.print("Total Amount (₹): ");
@@ -39,18 +37,12 @@ public class SplitwiseApp {
                     }
                 }
                 case 2 -> {
-                    System.out.print("Friend name: ");
-                    String friendName = sc.nextLine();
-                    friends.add(friendName);
-                    System.out.println(friendName + " added successfully.");
-                    System.out.println();
+                    addFriend(sc, friends);
                 }
                 case 3 -> {
                     if (friends.isEmpty()) {
                         System.out.println("No friends yet.");
-                    }
-                    else
-                    {
+                    } else {
                         System.out.println("Friends:");
                         for (String name : friends) {
                             System.out.println("- " + name);
@@ -67,5 +59,11 @@ public class SplitwiseApp {
                 }
             }
         }
+    }
+        public static void addFriend(Scanner sc,ArrayList<String>friends){
+            System.out.print("Friend name:");
+            String friendName = sc.nextLine();
+            friends.add(friendName);
+            System.out.println(friendName + "added successfully");
     }
 }
