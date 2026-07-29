@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class SplitwiseApp {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        ArrayList<String> friends = new ArrayList<>();
+        ArrayList<Friend> friends = new ArrayList<>();
         System.out.println("===== Splitwise Console =====");
         System.out.println("Track shared expenses with friends.");
         System.out.println();
@@ -37,15 +37,15 @@ public class SplitwiseApp {
                     }
                 }
                 case 2 -> {
-                    addFriend(sc, friends);
+                    addFriend(sc,friends);
                 }
                 case 3 -> {
                     if (friends.isEmpty()) {
                         System.out.println("No friends yet.");
                     } else {
                         System.out.println("Friends:");
-                        for (String name : friends) {
-                            System.out.println("- " + name);
+                        for (Friend friend : friends) {
+                            System.out.println("- " + friend.getName());
                         }
                     }
                 }
@@ -60,10 +60,10 @@ public class SplitwiseApp {
             }
         }
     }
-        public static void addFriend(Scanner sc,ArrayList<String>friends){
+        public static void addFriend(Scanner sc,ArrayList<Friend>friends){
             System.out.print("Friend name:");
             String friendName = sc.nextLine();
-            friends.add(friendName);
-            System.out.println(friendName + "added successfully");
+            friends.add(new Friend(friendName));
+            System.out.println(friendName + " added successfully");
     }
 }
