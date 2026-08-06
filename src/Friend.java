@@ -4,17 +4,20 @@ public class Friend {
     private final int id;
     private String name;
 
-    public Friend(String name) {
+    public Friend(String name)
+    {
         lastId++;
         this.id = lastId;
         this.name = name;
     }
 
-    public int getId() {
+    public int getId()
+    {
         return this.id;
     }
 
-    public String getName() {
+    public String getName()
+    {
         return this.name;
     }
 }
