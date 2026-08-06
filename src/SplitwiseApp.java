@@ -1,3 +1,5 @@
+
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -32,7 +34,7 @@ public class SplitwiseApp
                 {
                     if (friend.isEmpty())
                     {
-                        System.out.println("no friends added yet");
+                        System.out.println("No friends added yet");
                     }
                     else
                     {
@@ -45,19 +47,23 @@ public class SplitwiseApp
 
                         int numFriends = friend.size();
 
-                        Expense obj = new Expense(payerName, totalAmount);
+                        ExpenseLine obj = new ExpenseLine(payerName, totalAmount);
 
-                        double perPersonShare = obj.getAmount() / numFriends;
+                        double perPersonShare = obj.perpersonshare(numFriends);
 
-                        String expenseLine = "%s paid %.2f".formatted(obj.getPayerName(), obj.getAmount());
+                        String expenseLine =
+                                "%s paid %.2f".formatted(obj.payerName(), obj.amount());
 
-                        String shareLine = "Each person pays: %.2f".formatted(perPersonShare);
+                        String shareLine =
+                                "Each person pays: %.2f".formatted(perPersonShare);
 
                         System.out.println(expenseLine);
                         System.out.println(shareLine);
                     }
                 }
-                case 2 -> SplitwiseApp.addfriend(input, friend);
+
+                case 2 ->
+                        SplitwiseApp.addfriend(input, friend);
 
                 case 3 ->
                 {
@@ -68,26 +74,31 @@ public class SplitwiseApp
                     else
                     {
                         System.out.println("Friends:");
-                    }
 
-                    for (Friend name : friend)
-                    {
-                        System.out.println("   " + name.getName());
+                        for (Friend name : friend)
+                        {
+                            System.out.println("   " + name.getName());
+                        }
                     }
                 }
+
                 case 0 ->
                 {
                     System.out.println("Goodbye!");
                     running = false;
                 }
+
                 default ->
                         System.out.println("Invalid Choice!");
             }
         }
+
+        input.close();
     }
+
     public static void addfriend(Scanner input, ArrayList<Friend> friend)
     {
-        System.out.println("Friend name:");
+        System.out.print("Friend name: ");
         String friendName = input.nextLine();
         friend.add(new Friend(friendName));
         System.out.println("Added " + friendName + ".");
