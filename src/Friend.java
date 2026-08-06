@@ -1,9 +1,20 @@
 public class Friend {
-    private final String name;
-    public Friend(String name){
-        this.name=name;
+
+    private static int lastId = 0;
+    private final int id;
+    private String name;
+
+    public Friend(String name) {
+        lastId++;
+        this.id = lastId;
+        this.name = name;
     }
-    public String getName(){
-        return name;
+
+    public int getId() {
+        return this.id;
+    }
+
+    public String getName() {
+        return this.name;
     }
 }

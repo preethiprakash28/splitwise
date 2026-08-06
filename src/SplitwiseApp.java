@@ -1,5 +1,3 @@
-
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -13,7 +11,7 @@ public class SplitwiseApp
         System.out.println("Ready. More features coming in the next lessons.");
 
         Scanner input = new Scanner(System.in);
-        ArrayList<Friend> friend = new ArrayList<>();
+        ArrayList<Friend> friends = new ArrayList<>();
         boolean running = true;
 
         while (running)
@@ -32,7 +30,7 @@ public class SplitwiseApp
             {
                 case 1 ->
                 {
-                    if (friend.isEmpty())
+                    if (friends.isEmpty())
                     {
                         System.out.println("No friends added yet");
                     }
@@ -45,7 +43,7 @@ public class SplitwiseApp
                         double totalAmount = input.nextDouble();
                         input.nextLine();
 
-                        int numFriends = friend.size();
+                        int numFriends = friends.size();
 
                         ExpenseLine obj = new ExpenseLine(payerName, totalAmount);
 
@@ -63,21 +61,21 @@ public class SplitwiseApp
                 }
 
                 case 2 ->
-                        SplitwiseApp.addfriend(input, friend);
+                        SplitwiseApp.addfriend(input, friends);
 
                 case 3 ->
                 {
-                    if (friend.isEmpty())
+                    if (friends.isEmpty())
                     {
                         System.out.println("No friend yet.");
                     }
                     else
                     {
-                        System.out.println("Friends:");
+                        System.out.println("Friends(id):");
 
-                        for (Friend name : friend)
+                        for (Friend name : friends)
                         {
-                            System.out.println("   " + name.getName());
+                            System.out.println(name.getName() + " - " + name.getId());
                         }
                     }
                 }
@@ -96,11 +94,13 @@ public class SplitwiseApp
         input.close();
     }
 
-    public static void addfriend(Scanner input, ArrayList<Friend> friend)
+    public static void addfriend(Scanner input, ArrayList<Friend> friends)
     {
         System.out.print("Friend name: ");
         String friendName = input.nextLine();
-        friend.add(new Friend(friendName));
+
+        friends.add(new Friend(friendName));
+
         System.out.println("Added " + friendName + ".");
     }
 }
