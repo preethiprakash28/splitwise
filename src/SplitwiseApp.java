@@ -1,13 +1,22 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Splitwise console application.
+ */
 public class SplitwiseApp {
 
+    /**
+     * Starts the Splitwise console application.
+     *
+     * @param args command-line arguments (not used)
+     */
     public static void main(String[] args) {
 
         System.out.println("=== SplitWise ===");
         System.out.println("Track shared expenses with friends.");
         System.out.println();
+        System.out.println("Ready. More features coming in the next lessons.");
 
         Scanner input = new Scanner(System.in);
         ArrayList<Friend> friends = new ArrayList<>();
@@ -16,7 +25,7 @@ public class SplitwiseApp {
 
         while (running) {
 
-            System.out.println("\n=== Menu ===");
+            System.out.println("=== Menu ===");
             System.out.println("1. Record Expense");
             System.out.println("2. Add Friend");
             System.out.println("3. List Friends");
@@ -31,13 +40,13 @@ public class SplitwiseApp {
                 case 1 -> {
 
                     if (friends.isEmpty()) {
-                        System.out.println("No friends added yet.");
+                        System.out.println("No friends added yet");
                     } else {
 
                         System.out.print("Who paid? ");
                         String payerName = input.nextLine();
 
-                        System.out.print("Total Amount: ");
+                        System.out.print("Total Amount ? ");
                         double totalAmount = input.nextDouble();
                         input.nextLine();
 
@@ -47,23 +56,28 @@ public class SplitwiseApp {
 
                         double perPersonShare = obj.perpersonshare(numFriends);
 
-                        System.out.println(obj.payerName() + " paid " + obj.amount());
-                        System.out.printf("Each person pays: %.2f%n", perPersonShare);
+                        String expenseLine =
+                                "%s paid %.2f".formatted(obj.payerName(), obj.amount());
+
+                        String shareLine =
+                                "Each person pays: %.2f".formatted(perPersonShare);
+
+                        System.out.println(expenseLine);
+                        System.out.println(shareLine);
                     }
                 }
 
-                case 2 -> addFriend(input, friends);
+                case 2 -> addfriend(input, friends);
 
                 case 3 -> {
 
                     if (friends.isEmpty()) {
-                        System.out.println("No friends added.");
+                        System.out.println("No friend yet.");
                     } else {
+                        System.out.println("Friends(id):");
 
-                        System.out.println("Friends:");
-
-                        for (Friend f : friends) {
-                            System.out.println(f.getId() + " - " + f.getName());
+                        for (Friend name : friends) {
+                            System.out.println(FriendDisplay.listLine(name));
                         }
                     }
                 }
@@ -80,7 +94,7 @@ public class SplitwiseApp {
         input.close();
     }
 
-    public static void addFriend(Scanner input, ArrayList<Friend> friends) {
+    public static void addfriend(Scanner input, ArrayList<Friend> friends) {
 
         System.out.print("Friend name: ");
         String friendName = input.nextLine();
@@ -88,6 +102,17 @@ public class SplitwiseApp {
         Friend f = new Friend(friendName);
         friends.add(f);
 
-        System.out.println("Added " + f.getName() + " (id " + f.getId() + ").");
+        System.out.println(FriendDisplay.addedMessage(f));
+    }
+
+    private static class FriendDisplay {
+
+        static String listLine(Friend friend) {
+            return "- %d: %s".formatted(friend.getId(), friend.getName());
+        }
+
+        static String addedMessage(Friend friend) {
+            return "Added %s (id %d).".formatted(friend.getName(), friend.getId());
+        }
     }
 }
